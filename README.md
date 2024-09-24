@@ -93,9 +93,9 @@ Please make sure to follow these instructions to run the project on your machine
 
 ## Usage
 
-_For more examples, please refer to the [Documentation](DOC_URL)_
+_For more examples, please refer to the [Documentation](https://documenter.getpostman.com/view/29777357/2sAXqv61cp)_
 
-### Project Live Link: [Vercel](SERVER URL)
+### Project Live Link: [Vercel](https://bike-rental-server.vercel.app)
 
 ## Contributing
 

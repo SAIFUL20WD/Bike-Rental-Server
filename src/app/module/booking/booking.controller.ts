@@ -23,7 +23,7 @@ const updateBooking = catchAsync(async (req, res) => {
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Rental created successfully",
+        message: "Rental updated successfully",
         data: result,
     });
 });
