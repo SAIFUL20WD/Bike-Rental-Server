@@ -62,7 +62,7 @@ const appyCouponToDB = async (payload: { couponCode: string; id: string }) => {
     const newTotalCost = Math.round(booking.totalCost - discount);
     const newUsedCount = coupon.usedCount + 1;
     const bookingUpdated = await Booking.findByIdAndUpdate(payload.id, { totalCost: newTotalCost, couponUsed: true });
-    const couponUpdated = await Booking.findOneAndUpdate({ code: payload.couponCode }, { usedCount: newUsedCount });
+    const couponUpdated = await Coupon.findOneAndUpdate({ code: payload.couponCode }, { usedCount: newUsedCount });
     if (!bookingUpdated && !couponUpdated) {
         throw new AppError(httpStatus.INTERNAL_SERVER_ERROR, "Failed to apply coupon");
     }
