@@ -35,7 +35,7 @@ const updateBooking = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: "Rental created successfully",
+        message: "Rental updated successfully",
         data: result,
     });
 }));

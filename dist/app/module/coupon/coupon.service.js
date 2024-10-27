@@ -66,7 +66,7 @@ const appyCouponToDB = (payload) => __awaiter(void 0, void 0, void 0, function* 
     const newTotalCost = Math.round(booking.totalCost - discount);
     const newUsedCount = coupon.usedCount + 1;
     const bookingUpdated = yield booking_model_1.default.findByIdAndUpdate(payload.id, { totalCost: newTotalCost, couponUsed: true });
-    const couponUpdated = yield booking_model_1.default.findOneAndUpdate({ code: payload.couponCode }, { usedCount: newUsedCount });
+    const couponUpdated = yield coupon_model_1.default.findOneAndUpdate({ code: payload.couponCode }, { usedCount: newUsedCount });
     if (!bookingUpdated && !couponUpdated) {
         throw new AppError_1.default(http_status_1.default.INTERNAL_SERVER_ERROR, "Failed to apply coupon");
     }

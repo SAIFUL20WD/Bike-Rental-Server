@@ -13,9 +13,24 @@ const getAllBikesFromDB = async () => {
     return bikes;
 };
 
-const getBikesByQueryFromDB = async (name: string, brands: string, models: string, availabilty: string) => {
+const getBikesByQueryFromDB = async (
+    offset: string,
+    name: string,
+    brands: string,
+    models: string,
+    availabilty: string = "",
+) => {
     const brandList = brands.split(",");
     const modelList = models.split(",");
+
+    // Removes empty string from array
+    if (brandList[0] === "") {
+        brandList.pop();
+    }
+    if (modelList[0] === "") {
+        modelList.pop();
+    }
+
     const isAvailable = availabilty === "available" ? true : false;
 
     if (name) {
@@ -27,7 +42,7 @@ const getBikesByQueryFromDB = async (name: string, brands: string, models: strin
         });
         return result;
     } else {
-        const result = await Bike.find({});
+        const result = await Bike.find({}).skip(Number(offset)).limit(9);
         return result;
     }
 };

@@ -24,9 +24,16 @@ const getAllBikesFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
     const bikes = yield bike_model_1.default.find();
     return bikes;
 });
-const getBikesByQueryFromDB = (name, brands, models, availabilty) => __awaiter(void 0, void 0, void 0, function* () {
+const getBikesByQueryFromDB = (offset_1, name_1, brands_1, models_1, ...args_1) => __awaiter(void 0, [offset_1, name_1, brands_1, models_1, ...args_1], void 0, function* (offset, name, brands, models, availabilty = "") {
     const brandList = brands.split(",");
     const modelList = models.split(",");
+    // Removes empty string from array
+    if (brandList[0] === "") {
+        brandList.pop();
+    }
+    if (modelList[0] === "") {
+        modelList.pop();
+    }
     const isAvailable = availabilty === "available" ? true : false;
     if (name) {
         const result = yield bike_model_1.default.find({ name: new RegExp(name, "i") });
@@ -39,7 +46,7 @@ const getBikesByQueryFromDB = (name, brands, models, availabilty) => __awaiter(v
         return result;
     }
     else {
-        const result = yield bike_model_1.default.find({});
+        const result = yield bike_model_1.default.find({}).skip(Number(offset)).limit(9);
         return result;
     }
 });

@@ -27,13 +27,14 @@ const createBike = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     });
 }));
 const getAllBikes = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a, _b, _c, _d;
-    const name = (_a = req === null || req === void 0 ? void 0 : req.query) === null || _a === void 0 ? void 0 : _a.name;
-    const brands = (_b = req === null || req === void 0 ? void 0 : req.query) === null || _b === void 0 ? void 0 : _b.brands;
-    const models = (_c = req === null || req === void 0 ? void 0 : req.query) === null || _c === void 0 ? void 0 : _c.models;
-    const availabilty = (_d = req === null || req === void 0 ? void 0 : req.query) === null || _d === void 0 ? void 0 : _d.availabilty;
-    if (name || brands || models || availabilty) {
-        const result = yield bike_service_1.BikeServices.getBikesByQueryFromDB(name, brands, models, availabilty);
+    var _a, _b, _c, _d, _e;
+    const offset = (_a = req === null || req === void 0 ? void 0 : req.query) === null || _a === void 0 ? void 0 : _a.offset;
+    const name = (_b = req === null || req === void 0 ? void 0 : req.query) === null || _b === void 0 ? void 0 : _b.name;
+    const brands = (_c = req === null || req === void 0 ? void 0 : req.query) === null || _c === void 0 ? void 0 : _c.brands;
+    const models = (_d = req === null || req === void 0 ? void 0 : req.query) === null || _d === void 0 ? void 0 : _d.models;
+    const availabilty = (_e = req === null || req === void 0 ? void 0 : req.query) === null || _e === void 0 ? void 0 : _e.availabilty;
+    if (offset || name || brands || models || availabilty) {
+        const result = yield bike_service_1.BikeServices.getBikesByQueryFromDB(offset, name, brands, models, availabilty);
         if (result.length === 0) {
             (0, sendResponse_1.default)(res, {
                 statusCode: http_status_1.default.NOT_FOUND,
@@ -62,8 +63,8 @@ const getAllBikes = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     }
 }));
 const getBikesByTag = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _e;
-    const tag = (_e = req === null || req === void 0 ? void 0 : req.query) === null || _e === void 0 ? void 0 : _e.tag;
+    var _f;
+    const tag = (_f = req === null || req === void 0 ? void 0 : req.query) === null || _f === void 0 ? void 0 : _f.tag;
     const result = yield bike_service_1.BikeServices.getBikesByTagFromDB(tag);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,

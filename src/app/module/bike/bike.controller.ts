@@ -15,12 +15,13 @@ const createBike = catchAsync(async (req, res) => {
 });
 
 const getAllBikes = catchAsync(async (req, res) => {
+    const offset = req?.query?.offset as string;
     const name = req?.query?.name as string;
     const brands = req?.query?.brands as string;
     const models = req?.query?.models as string;
     const availabilty = req?.query?.availabilty as string;
-    if (name || brands || models || availabilty) {
-        const result = await BikeServices.getBikesByQueryFromDB(name, brands, models, availabilty);
+    if (offset || name || brands || models || availabilty) {
+        const result = await BikeServices.getBikesByQueryFromDB(offset, name, brands, models, availabilty);
         if (result.length === 0) {
             sendResponse(res, {
                 statusCode: httpStatus.NOT_FOUND,
